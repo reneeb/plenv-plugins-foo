@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# Summary: Install cpanm
+#
+# Usage: plenv cpan-reporter
+#
+set -e
+[ -n "$PLENV_DEBUG" ] && set -x
+
+if [ -z "$PLENV_ROOT" ]; then
+    PLENV_ROOT="${HOME}/.plenv"
+fi
+
+for path in "${PLENV_ROOT}/versions/"*; do
+if [ -d "$path" ]; then
+    curl -L http://cpanmin.us | PLENV_VERSION="${path##*/}" plenv exec perl - App::cpanminus
+    PLENV_VERSION="${path##*/}" plenv exec cpanm App::cpanminus::reporter
+    plenv rehash
+fi
+done
+
+cpanm-reporter --setup
