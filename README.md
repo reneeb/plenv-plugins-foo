@@ -10,3 +10,8 @@ cpan-reporter
 
 This plugin install cpanm and App::cpanminus::reporter for each installed
 Perl version and starts the reporter setup.
+
+list-inc
+--------
+
+List all directories in @INC.
